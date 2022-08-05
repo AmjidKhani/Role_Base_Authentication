@@ -35,24 +35,6 @@ class _addingemployState extends State<addingemploy> {
   CollectionReference products =
       FirebaseFirestore.instance.collection("Employee");
 
-  addEmployy() {
-    products.add({
-      'id': idcontroller.text,
-      'User_Name': Namecontroller.text,
-      'Phone_no': phonenocontroller.text,
-      'Cnic': cniccontroller.text,
-      'Email': Emailcontroller.text,
-      'gender': radiovaluechange
-//value.onchangegender.,
-    }).then((value) {
-      print("Data added Successfully");
-    }).onError((error, stackTrace) {
-      print('Error$error');
-    });
-  }
-
-  var radiovaluechange;
-
   @override
   Widget build(BuildContext context) {
     final valuechange = Provider.of<controlller>(context, listen: false);
@@ -202,86 +184,7 @@ class _addingemployState extends State<addingemploy> {
               ),
 
               //   Radiobutton container
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 65,
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 0.5,
-                      ),
-                      borderRadius: BorderRadius.circular(9)),
-                  child: Row(children: [
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
-                      child: Text(
-                        "Gender",
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    )),
-                    Row(
-                      children: [
-                        Consumer<controlller>(
-                          builder: (context, value, child) {
-                            return Radio(
-                              value: "Male",
-                              groupValue: value.selectedvalue,
-                              onChanged: (val) {
-                                radiovaluechange = val;
-                                value.onchangegender(radiovaluechange);
-                              },
-                              activeColor: Colors.purple,
-                              fillColor:
-                                  MaterialStateProperty.all(Colors.black),
-                            );
-                          },
-                        ),
-                        Text(
-                          "Male",
-                          style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 20.0),
-                      child: Row(
-                        children: [
-                          Consumer<controlller>(
-                            builder: (context, value, child) {
-                              return Radio(
-                                value: "Female",
-                                groupValue: radiovaluechange,
-                                //value.selectedvalue,
-                                onChanged: (val) {
-                                  setState(() {
-                                    radiovaluechange = val;
-                                  });
-                                  value.onchangegender(val);
-                                },
-                                activeColor: Colors.purple,
-                                fillColor:
-                                    MaterialStateProperty.all(Colors.black),
-                              );
-                            },
-                          ),
-                          Text(
-                            "Female",
-                            style: TextStyle(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ]),
-                ),
-              ),
+             //
               SizedBox(
                 height: 20,
               ),
@@ -290,7 +193,7 @@ class _addingemployState extends State<addingemploy> {
                 width: 150,
                 child: ElevatedButton(
                     onPressed: () {
-                      addEmployy();
+                   //   addEmployy();
                       //print("Data added");
                     },
                     child: const Text("Submit")),

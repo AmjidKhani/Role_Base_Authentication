@@ -8,6 +8,8 @@ import 'package:proj/Dashboard/hrdashboard.dart';
 import 'package:proj/authprovider.dart';
 import 'package:proj/homescreen/homescreen.dart';
 import 'package:proj/login_signup_screen/signup.dart';
+import 'package:proj/newscreens/newaddemploy.dart';
+import 'package:proj/newscreens/newlogin.dart';
 import 'package:proj/newscreens/newsignup.dart';
 import 'package:provider/provider.dart';
 import '../controller/Radiobuttoncontroller.dart';
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
         theme:Themes.lightmode,
           darkTheme: Themes.darkmode,
         themeMode: ThemeService().theme,
-        home: const  newsignup(),
+        home: const  newaddemploy(),
       ) ,
     );
   }

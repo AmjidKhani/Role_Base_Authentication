@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:proj/login_signup_screen/signup.dart';
+import 'package:proj/newscreens/newlogin.dart';
+import 'package:proj/newscreens/newsignup.dart';
 import '../login_signup_screen/login.dart';
 import '../login_signup_screen/signup.dart';
 
@@ -74,7 +76,7 @@ class _homescreenState extends State<homescreen> {
 
                            onPressed: ()
                            {
-
+Get.to(newlogin());
                            },
                            child: Text("LOGIN",style: TextStyle(
                                color: Color(0xFF527DAA),
@@ -94,7 +96,7 @@ class _homescreenState extends State<homescreen> {
 
                            onPressed: ()
                            {
-
+Get.to(newsignup());
                            },
                            child: Text("Sign up",style: TextStyle(
                                color: Color(0xFF527DAA),
