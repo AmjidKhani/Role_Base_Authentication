@@ -13,22 +13,26 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 class AuthService{
   final FirebaseAuth _auth;
+  User? user =FirebaseAuth.instance.currentUser;
+  //final DocumentSnapshot snap= FirebaseFirestore.instance as DocumentSnapshot<Object?>;
   AuthService(this._auth);
   Stream<User?> get authStateChange=> _auth.idTokenChanges();
+
   Future<String> Login(String email,String password)async
   {
     try{
       await _auth.signInWithEmailAndPassword(email: email, password:password);
-          return "";
+          return "Welcome To The Dashboard";
     }catch(e){
-      return e.toString();
+      return ('Error=  $e.toString()');
     }
     }
   Future<String> signup(String email,String password)async
   {
     try{
       await _auth.createUserWithEmailAndPassword(email: email, password: password);
-      return "Sign_Up In";
+      return
+        "Sign_Up In";
     }catch(e){
       return e.toString();
     }

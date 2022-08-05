@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:proj/login_signup_screen/signup.dart';
-
 import '../login_signup_screen/login.dart';
 import '../login_signup_screen/signup.dart';
 
@@ -20,11 +20,111 @@ class _homescreenState extends State<homescreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Color(0xFF73AEF5),
+                    Color(0xFF61AEF1),
+                    Color(0xFF478DE0),
+                    Color(0xFF398AE5),
+
+                  ],
+                  stops: [0.1, 0.4, 0.7, 0.9],
+
+                ),
+              ),
+            ),
+            Container(
+              //color: Colors.purple,
+              height: double.infinity,
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(horizontal: 40.0,
+                vertical: 120.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Welcome",textAlign: TextAlign.start,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                   SizedBox(
+                     height: 230,
+                   ),
+                   Column(
+                   children: [
+
+                     Container(
+                         padding: EdgeInsets.symmetric(vertical: 25.0),
+                         width: double.infinity,
+                         height: 110,
+                         child: RaisedButton(
+                           elevation: 5.0,
+
+                           onPressed: ()
+                           {
+
+                           },
+                           child: Text("LOGIN",style: TextStyle(
+                               color: Color(0xFF527DAA),
+                               letterSpacing: 1.5,
+                               fontSize: 18.0,
+                               fontWeight: FontWeight.bold
+                           ),),
+                         )
+                     ),
+                     Container(
+                         padding: EdgeInsets.symmetric(vertical: 25.0),
+                         width: double.infinity,
+                         height: 110,
+                         child: RaisedButton(
+                           color: Colors.white,
+                           elevation: 5.0,
+
+                           onPressed: ()
+                           {
+
+                           },
+                           child: Text("Sign up",style: TextStyle(
+                               color: Color(0xFF527DAA),
+                               letterSpacing: 1.5,
+                               fontSize: 18.0,
+                               fontWeight: FontWeight.bold
+                           ),),
+                         )
+                     ),
+                   ],
+                   ),
+
+                  ],
+                ),
+
+          ),
+
+
+            )
+
+
+          ],
+        )
+    );
+  }
+}
+      /*Scaffold(
       body: SafeArea(
         child: Container(
-          // we will give media query height
-          // double.infinity make it big as my parent allows
-          // while MediaQuery make it big as per the screen
+
 
           width: double.infinity,
           height: MediaQuery.of(context).size.height,
@@ -55,7 +155,7 @@ class _homescreenState extends State<homescreen> {
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("lib/assets/welcome.png")
+                        image: AssetImage("lib/assets/images/backgroundimages/background.png")
                     )
                 ),
               ),
@@ -124,4 +224,4 @@ class _homescreenState extends State<homescreen> {
       ),
     );
   }
-}
+}*/

@@ -1,5 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../addingemployees/addingnewemploy.dart';
+import '../mainscreens/attendencepage.dart';
+import '../mainscreens/competedprojects.dart';
+import '../mainscreens/projects.dart';
+import 'employdashboard.dart';
+import 'managerdashboard.dart';
 
 class hrdashboard extends StatefulWidget {
   const hrdashboard({Key? key}) : super(key: key);
@@ -12,55 +21,116 @@ class _hrdashboardState extends State<hrdashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Container(
-          // we will give media query height
-          // double.infinity make it big as my parent allows
-          // while MediaQuery make it big as per the screen
+      appBar: AppBar(title: Text("",),),
+      body: Column(
+        children: <Widget>[
+          SizedBox(height:20 ,),
+          Text("Dashboard",style: TextStyle(fontSize: 20,fontWeight: FontWeight.w400),
+              textAlign:TextAlign.start ),
+          SizedBox(
+            height: 30,
+          ),
+          Container(
+            //  padding: EdgeInsets.only(left: 10,right: 10,top: 10),
+            child: Flexible(
+              child: GridView.count(
+                mainAxisSpacing: 10,
+                primary: false,
+                crossAxisCount: 2,
+                children: [
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(addingemploy());
+                    },
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
 
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
-          child: Column(
-            // even space distribution
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  Text(
-                    "Welcome",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
 
+                          Image.asset('lib/assets/images/dashboardimages/hr1.png',fit: BoxFit.fill,),
+                          SizedBox(height: 10,),
+                          Text(" Add Employees",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+
+                          )
+                        ],
+                      ),
                     ),
-
                   ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text("To the HR Dashboard ",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: (Colors.teal[700]!),
-                      fontSize: 15,
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(managerdashboard());
+                    },
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
 
-                    ),)
+
+                          Image.asset('lib/images/manager.png',fit: BoxFit.fill,),
+                          SizedBox(height: 10,),
+                          Text("Manager",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(attendencepage());
+                    },
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
+
+
+                          Image.asset('lib/images/approval.png',fit: BoxFit.fill,),
+                          SizedBox(height: 10,),
+                          Text("Attendence",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(projects());
+                    },
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('lib/images/projects.png',fit: BoxFit.fill,),
+                          SizedBox(height: 10,),
+                          Text("Projects",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Get.to(completedprojects());
+                    },
+                    child: Card(
+                      child: Column(
+                        children: <Widget>[
+                          Image.asset('lib/images/check.png',fit: BoxFit.fill,),
+                          SizedBox(height: 10,),
+                          Text("Competed Projects",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
-              Container(
-                height: MediaQuery.of(context).size.height / 3,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("lib/assets/welcome.png")
-                    )
-                ),
-              ),
-
-            ],
+            ),
           ),
-        ),
+
+
+        ],
       ),
     );
   }

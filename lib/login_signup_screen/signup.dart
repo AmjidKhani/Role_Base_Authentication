@@ -14,6 +14,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+import '../homescreen/homescreen.dart';
 import 'login.dart';
 import 'dart:developer';
 class SignupPage extends StatefulWidget {
@@ -22,9 +23,7 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
- // _SignupPageState(){
-   // _RoleSelect=_rolelist[0];
-  //}
+
  String  _selectedRole="Select Role";
      String? valueselected;
   final  items=['Admin','HR','Manager','Employ'];
@@ -86,7 +85,6 @@ class _SignupPageState extends State<SignupPage> {
                 Column(
                   children: <Widget>[
                     DropdownButtonFormField(
-
                       items: _rolelist.map((e) => DropdownMenuItem(
                         child: Text(e),value: e,)
                       ).toList(),
@@ -148,7 +146,17 @@ class _SignupPageState extends State<SignupPage> {
                         }).onError((error, stackTrace) {
                           print("Error$error");
                         });
+                        //Get.to(LoginPage());
                       });
+
+                      if(User== null){
+                          Get.to(homescreen());
+
+                      }
+                      else {
+                        Get.to(LoginPage());
+                      }
+
                       },
     color: Color(0xff0095FF),
                     elevation: 0,

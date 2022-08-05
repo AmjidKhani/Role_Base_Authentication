@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
+final FirebaseAuth _auth=FirebaseAuth.instance;
 class LoginPage extends StatefulWidget {
  // static String? SelectDesig;
   @override
@@ -23,9 +24,40 @@ class _LoginPageState extends State<LoginPage> {
    String? Designation;
    String? Password;
      String firstvalue="Please Select Designation";
+final TextEditingController Email=TextEditingController();
+   final TextEditingController password=TextEditingController();
+   void _signIn()async{
 
-   String email=securitycheck.Emailcontroller.toString();
-   String password=securitycheck.Emailcontroller.toString();
+     final User? user=(
+         await _auth.signInWithEmailAndPassword(email: Email.text, password: password.text)
+     ).user;
+     if(user==null){
+       Get.snackbar("User Not Found", "User May Be Deleted",colorText: Colors.purple);
+     }
+     else{
+       _checkRole();
+     }
+   }
+   void _checkRole()async
+   {
+     User? user =FirebaseAuth.instance.currentUser;
+     final DocumentSnapshot snap=await FirebaseFirestore.instance.collection('Users').doc(user?.uid).get();
+     setState(() {
+       Designation=snap['Role'];
+     }
+     );
+     if(Designation=="Admin") {Get.to(admindashboard());}
+     else if(Designation=="HR"){ Get.to(hrdashboard());
+     }
+     else if(Designation=="Manager"){  Get.to(managerdashboard());}
+     else if(Designation=="Employ"){  Get.to(employdashboard());}
+     else{
+       Get.snackbar("Security message", "Please SignUp First");
+     }
+   }
+
+  // String email=securitycheck.Emailcontroller.toString();
+   //String password=securitycheck.Emailcontroller.toString();
    @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,9 +100,46 @@ class _LoginPageState extends State<LoginPage> {
                   padding: EdgeInsets.symmetric(horizontal: 40),
                   child: Column(
                     children: <Widget>[
-                      inputFile(label: "Email", controller: securitycheck.Emailcontroller),
-                      inputFile(label: "Password", obscureText: true, controller: securitycheck.PasswordController )
-                    ],
+                      ///  Email Text Filed
+                      ///
+                      TextField(
+
+                        controller:Email ,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 0,
+                                horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: (Colors.grey[400])!,
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: (Colors.grey[400])!),
+                            )
+                        ),
+                      ),
+                      ///    password textfield
+                      ///
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextField(
+
+                        controller:password ,
+                        decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 0,
+                                horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: (Colors.grey[400])!,
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(color: (Colors.grey[400])!),
+                            )
+                        ),
+                      ),
+                     ],
                   ),
                 ),
 
@@ -82,17 +151,18 @@ class _LoginPageState extends State<LoginPage> {
                     BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                     ),
+
+
                     ////////////////////////Login Button ///////////////////////////
+
                     child: MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
                       onPressed: () {
-                        //securitycheck.securitycheckinfortextfield();
-                        context.read<AuthService>().Login(email, password);
-                        _checkRole();
-                        setState(() {
-                          securitycheck.SelectDesig;
-                        });
+                        _signIn();
+                       // context.read<AuthService>().Login(Email.text, password.text);
+                       // _checkRole();
+
                         },
                       color: Color(0xff0095FF),
                       elevation: 0,
@@ -115,9 +185,8 @@ class _LoginPageState extends State<LoginPage> {
                     Text("Don't have an account?"),
       GestureDetector(
         onTap: () {
-
-        },
-
+Get.to(SignupPage());
+          },
           child: Text(" Sign up", style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 18,
@@ -131,13 +200,12 @@ class _LoginPageState extends State<LoginPage> {
                   height: 200,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage("lib/assets/background.png"),
+                        image: AssetImage(" lib/assets/images/backgroundimages/background.png"),
                         fit: BoxFit.fitHeight
                     ),
 
                   ),
                 )
-
               ],
             ))
           ],
@@ -145,39 +213,22 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  void _checkRole()async
-  {
-    User? user =FirebaseAuth.instance.currentUser;
-    final DocumentSnapshot snap=await FirebaseFirestore.instance.collection('Users').doc(user?.uid).get();
- setState(() {
-   Designation=snap['Role'];
 
- });
- if(Designation=="Admin") {Get.to(admindashboard());}
- else if(Designation=="HR"){ Get.to(hrdashboard());
- }
- else if(Designation=="Manager"){  Get.to(managerdashboard());}
- else if(Designation=="Employ"){  Get.to(employdashboard());}
- else{
-   Get.snackbar("Security message", "Please SignUp First");
- }
-  }
+}
 
-  }
-  Widget inputFile({label, obscureText = false ,required TextEditingController controller} )
+
+ /* Widget inputFile({label, obscureText = false ,required TextEditingController controller} )
 {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Text(
         label,
-
         style: TextStyle(
             fontSize: 15,
             fontWeight: FontWeight.w400,
             color:Colors.black87
         ),
-
       ),
       SizedBox(
         height: 5,
@@ -192,7 +243,6 @@ controller: controller,
               borderSide: BorderSide(
                   color: (Colors.grey[400])!,
               ),
-
             ),
             border: OutlineInputBorder(
                 borderSide: BorderSide(color: (Colors.grey[400])!),
@@ -203,3 +253,6 @@ controller: controller,
     ],
   );
 }
+
+
+  */
