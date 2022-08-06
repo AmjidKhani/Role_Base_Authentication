@@ -3,7 +3,8 @@ import 'package:provider/provider.dart';
 class controlller with ChangeNotifier
 {
   var selectedvalue;
-  get statee=>selectedvalue;
+ String get statee=>selectedvalue;
+
   void onchangegender(var gender)
   {
     selectedvalue=gender;
