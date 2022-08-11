@@ -4,7 +4,7 @@ import 'package:proj/newscreens/newlogin.dart';
 import '../controller/Radiobuttoncontroller.dart';
 import 'package:get/get.dart';
 import 'package:proj/Dashboard/admindashboard.dart';
-import 'package:proj/Dashboard/employdashboard.dart';
+import 'package:proj/Employeescreens/employdashboard.dart';
 import 'package:proj/Dashboard/hrdashboard.dart';
 import 'package:proj/Dashboard/managerdashboard.dart';
 import 'package:proj/Helper/securitycheckfortextfielddrop.dart';
@@ -53,14 +53,13 @@ class _newaddemployState extends State<newaddemploy> {
         'Role': Rolecontroller.text,
        // 'gender': radiovaluechange,
          'gender': Provider.of<controlller>(context, listen: false).selectedvalue
-//value.onchangegender.,
       }).then((value) {
         print("Data added Successfully");
+        Get.to(hrdashboard());
       }).onError((error, stackTrace) {
         print('Error$error');
       });
     }
-
     return Scaffold(
         body: Stack(
       children: [
@@ -101,8 +100,6 @@ class _newaddemployState extends State<newaddemploy> {
                 SizedBox(
                   height: 30,
                 ),
-
-                ///  Column Start
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
@@ -368,9 +365,8 @@ class _newaddemployState extends State<newaddemploy> {
                                 return Radio(
                                   value: "Male",
                                   groupValue: value.selectedvalue,
-                                  //adiovaluechange,
-                                  onChanged: (val) {
 
+                                  onChanged: (val) {
                                     value.onchangegender(val);
                                   },
 
@@ -389,30 +385,6 @@ class _newaddemployState extends State<newaddemploy> {
                             ),
                           ],
                         ),
-                     /*   Row(
-                          children: [
-                          Radio(
-                          value: "Male",
-                          groupValue: radiovaluechange,
-                          onChanged: (val) {
-                            setState(() {
-                              radiovaluechange=val;
-                            }
-                            );
-                          },
-                          activeColor: Colors.purple,
-                          fillColor:
-                          MaterialStateProperty.all(Colors.white),
-                        ),
-                            Text(
-                              "Male",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        ),*/
                         Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: Row(
@@ -444,10 +416,6 @@ class _newaddemployState extends State<newaddemploy> {
                           ),
                         ),
                       ]),
-
-                      //
-
-                      // Seconde Row
                     ),
 
                     /////Radiobutton

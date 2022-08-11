@@ -12,6 +12,8 @@ import 'package:proj/newscreens/newaddemploy.dart';
 import 'package:proj/newscreens/newlogin.dart';
 import 'package:proj/newscreens/newsignup.dart';
 import 'package:provider/provider.dart';
+import '../Employeescreens/studenttry/studentonedata.dart';
+import '../Employeescreens/viewemplyees.dart';
 import '../controller/Radiobuttoncontroller.dart';
 import '../login_signup_screen/login.dart';
 import '../login_signup_screen/login.dart';
@@ -23,6 +25,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
+  runApp(SfDataGridLoadMoreApp());
   runApp(const MyApp());
 }
 
@@ -40,7 +43,6 @@ class MyApp extends StatelessWidget {
           StreamProvider(
               create:(context)=>context.read<AuthService>().authStateChange, initialData: null,
               ),
-
         ],
       child:GetMaterialApp(
         //backgroundColor: context.theme.backgroundColor,
@@ -48,20 +50,18 @@ class MyApp extends StatelessWidget {
         theme:Themes.lightmode,
           darkTheme: Themes.darkmode,
         themeMode: ThemeService().theme,
-        home: const  newaddemploy(),
+        home:SfDataGridLoadMoreApp(),
       ) ,
     );
   }
 }
 class AuthWrapper extends StatelessWidget{
   const AuthWrapper({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final user=context.watch<User>();
     if(User== null){
       return  newsignup();
-
     }
     else {
       return LoginPage();

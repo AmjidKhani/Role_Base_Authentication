@@ -5,18 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:proj/addingemployees/reusableclasstextfield.dart';
 import 'package:provider/provider.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import '../controller/Radiobuttoncontroller.dart';
-
 class addingemploy extends StatefulWidget {
   const addingemploy({Key? key}) : super(key: key);
-
   @override
   State<addingemploy> createState() => _addingemployState();
 }
-
 class _addingemployState extends State<addingemploy> {
   final TextEditingController Namecontroller = TextEditingController();
   final TextEditingController idcontroller = TextEditingController();
@@ -34,7 +30,6 @@ class _addingemployState extends State<addingemploy> {
   final firestoreInstance = FirebaseFirestore.instance;
   CollectionReference products =
       FirebaseFirestore.instance.collection("Employee");
-
   @override
   Widget build(BuildContext context) {
     final valuechange = Provider.of<controlller>(context, listen: false);

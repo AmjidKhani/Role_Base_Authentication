@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import '../Dashboard/admindashboard.dart';
-import '../Dashboard/employdashboard.dart';
+import '../Employeescreens/employdashboard.dart';
 import '../Dashboard/hrdashboard.dart';
 import '../Dashboard/managerdashboard.dart';
 import '../login_signup_screen/login.dart';

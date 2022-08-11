@@ -8,7 +8,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proj/Dashboard/admindashboard.dart';
-import 'package:proj/Dashboard/employdashboard.dart';
+import 'package:proj/Employeescreens/employdashboard.dart';
 import 'package:proj/Dashboard/hrdashboard.dart';
 import 'package:proj/Dashboard/managerdashboard.dart';
 import 'package:proj/Helper/securitycheckfortextfielddrop.dart';

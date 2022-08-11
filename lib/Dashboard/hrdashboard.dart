@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../addingemployees/addingnewemploy.dart';
+import '../Employeescreens/addingnewemploy.dart';
 import '../mainscreens/attendencepage.dart';
 import '../mainscreens/competedprojects.dart';
 import '../mainscreens/projects.dart';
-import 'employdashboard.dart';
+import '../Employeescreens/employdashboard.dart';
 import 'managerdashboard.dart';
 
 class hrdashboard extends StatefulWidget {

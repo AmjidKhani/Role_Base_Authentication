@@ -2,14 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:proj/Dashboard/employdashboard.dart';
+import 'package:proj/Employeescreens/employdashboard.dart';
 import 'package:proj/Dashboard/hrdashboard.dart';
 import 'package:proj/Dashboard/managerdashboard.dart';
+import 'package:proj/Employeescreens/viewemplyees.dart';
 import 'package:proj/mainscreens/competedprojects.dart';
 import 'package:proj/drawer/drawer.dart';
 import 'package:proj/mainscreens/projects.dart';
 import 'package:proj/themechanger/themedataservice.dart';
 import '../mainscreens/attendencepage.dart';
+import '../Employeescreens/studenttry/datagrid.dart';
 class admindashboard extends StatefulWidget {
   const admindashboard({Key? key}) : super(key: key);
   @override
@@ -67,7 +69,7 @@ SizedBox(height:20 ,),
                                              children: <Widget>[
 
 
-                                                 Image.asset('lib/images/dashboardimages/hr1.png',),
+                                                 Image.asset('lib/assets/images/dashboardimages/hr1.png',),
                          SizedBox(height: 10,),
                          Text("HR",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
 
@@ -94,9 +96,15 @@ SizedBox(height:20 ,),
                                         ),
                                       ),
                                     ),
+                                    //
+                                    //
+                                    //         Employee dashboard
+
+
                                     GestureDetector(
                                       onTap: (){
-                                        Get.to(employdashboard());
+
+                                        //Get.to( EmployeeDataGridSource());
                                       },
                                       child: Card(
                                         child: Column(
