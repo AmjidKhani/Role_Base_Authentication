@@ -13,7 +13,7 @@ import 'package:proj/newscreens/newlogin.dart';
 import 'package:proj/newscreens/newsignup.dart';
 import 'package:provider/provider.dart';
 import '../Employeescreens/studenttry/studentdata.dart';
-import '../Employeescreens/studenttry/studentonedata.dart';
+
 import '../Employeescreens/viewemplyees.dart';
 import '../controller/Radiobuttoncontroller.dart';
 import '../login_signup_screen/login.dart';
