@@ -13,18 +13,18 @@ class Emmployee {
   DocumentReference? reference;
 
   factory Emmployee.fromSnapshot(DocumentSnapshot snapshot) {
-    Emmployee newEmployee = Emmployee.fromJson(snapshot.data() as Map<dynamic, dynamic>);
+    Emmployee newEmployee = Emmployee.fromJson(snapshot.data() as Map<dynamic, dynamic> );
     newEmployee.reference = snapshot.reference;
     return newEmployee;
   }
 
   factory Emmployee.fromJson(Map<dynamic, dynamic> json) =>
-      _employeeFromJson(json);
-  Map<String, dynamic> toJson() => _employeeToJson(this);
+      employeeFromJson(json);
+  Map<String, dynamic> toJson() => employeeToJson(this);
   @override
   String toString() => 'name $name';
 }
-Emmployee _employeeFromJson(Map<dynamic, dynamic> data) {
+Emmployee employeeFromJson(Map<dynamic, dynamic> data) {
   return Emmployee(
     data['id'],
     data['name'],
@@ -32,7 +32,7 @@ Emmployee _employeeFromJson(Map<dynamic, dynamic> data) {
   );
 }
 
-Map<String, dynamic> _employeeToJson(Emmployee instance) {
+Map<String, dynamic> employeeToJson(Emmployee instance) {
   return {
     'id' : instance.id,
     'name': instance.name,

@@ -7,7 +7,6 @@ class SfDataGridLoadMoreApp extends StatelessWidget {
   final EmployeeDataGridSource employeeDataGridSource =
   EmployeeDataGridSource();
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,7 +50,31 @@ class SfDataGridLoadMoreApp extends StatelessWidget {
       ),
     );
   }
-
-
-
+  Widget loadMoreInfiniteBuilder(
+      BuildContext context, LoadMoreRows loadMoreRows) {
+    Future<String> loadRows() async {
+      await loadMoreRows();
+      return Future<String>.value('Completed');
+    }
+    return FutureBuilder<String>(
+        initialData: 'loading',
+        future: loadRows(),
+        builder: (context, snapShot) {
+          if (snapShot.data == 'loading') {
+            return Container(
+                height: 60.0,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: BorderDirectional(
+                        top: BorderSide(
+                            width: 1.0, color: Color.fromRGBO(0, 0, 0, 0.26)))),
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.deepPurple)));
+          } else {
+            return SizedBox.fromSize(size: Size.zero);
+          }
+        });
+  }
 }
