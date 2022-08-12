@@ -13,8 +13,6 @@ import 'package:proj/newscreens/newlogin.dart';
 import 'package:proj/newscreens/newsignup.dart';
 import 'package:provider/provider.dart';
 import '../Employeescreens/studenttry/studentdata.dart';
-
-import '../Employeescreens/viewemplyees.dart';
 import '../controller/Radiobuttoncontroller.dart';
 import '../login_signup_screen/login.dart';
 import '../login_signup_screen/login.dart';
@@ -26,7 +24,7 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await GetStorage.init();
-  runApp(SfDataGridLoadMoreApp());
+
   runApp(const MyApp());
 }
 
