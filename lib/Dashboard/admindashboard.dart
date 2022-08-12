@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:proj/Employeescreens/employdashboard.dart';
 import 'package:proj/Dashboard/hrdashboard.dart';
 import 'package:proj/Dashboard/managerdashboard.dart';
-import 'package:proj/Employeescreens/viewemplyees.dart';
 import 'package:proj/mainscreens/competedprojects.dart';
 import 'package:proj/drawer/drawer.dart';
 import 'package:proj/mainscreens/projects.dart';
