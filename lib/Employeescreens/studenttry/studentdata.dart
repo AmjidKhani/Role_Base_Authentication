@@ -8,6 +8,7 @@ class employeedata extends StatefulWidget {
   @override
   State<employeedata> createState() => _employeedataState();
 }
+final CollectionReference abc =FirebaseFirestore.instance.collection("Products");
 
 class _employeedataState extends State<employeedata> {
   @override
@@ -91,8 +92,11 @@ class _employeedataState extends State<employeedata> {
                     );
                   }
                   return ListView.builder(
+
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (BuildContext context, int index) {
+                        final DocumentSnapshot documentSnapshot=snapshot.data!.docs[index];
+
                         return Center(
                           child: SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -122,7 +126,92 @@ class _employeedataState extends State<employeedata> {
                                   ),
                                 ],
                                 rows: [
-                                  DataRow(cells: [
+                                  DataRow(
+                                      onLongPress: () {
+                                        showModalBottomSheet(
+                                            context: context,
+                                            builder: (BuildContext bc) {
+                                              return Container(
+                                                height: MediaQuery.of(context).size.height * 0.75,
+                                                child: Wrap(
+                                                  children: <Widget>[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top: 50.0,left: 30),
+                                                      child: SizedBox(
+                                                        height: 80,
+                                                        width: 300,
+                                                        child: ElevatedButton(
+
+                                                          child: Text(
+                                                            'Delete',
+                                                            style: TextStyle(fontSize: 15.0),
+                                                          ),
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              deleted(documentSnapshot.id);
+                                                            });
+
+                                                          },
+                                                          style: ElevatedButton.styleFrom(
+                                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                                                              primary: Colors.purple,
+                                                              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                                                              textStyle: TextStyle(
+                                                                  fontSize: 30,
+                                                                  fontWeight: FontWeight.bold)
+                                                          ),
+                                                        ),
+
+                                                      ),
+
+
+
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top: 50.0,left: 30),
+                                                      child: SizedBox(
+                                                        height: 80,
+                                                        width: 300,
+                                                        child: ElevatedButton(
+
+                                                          child: Text(
+                                                            'Update',
+                                                            style: TextStyle(fontSize: 15.0),
+                                                          ),
+                                                          onPressed: () {
+
+                                                            deleted(documentSnapshot.id);
+
+                                                          },
+                                                          style: ElevatedButton.styleFrom(
+                                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20.0))),
+
+                                                              primary: Colors.purple,
+                                                              padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                                                              textStyle: TextStyle(
+                                                                  fontSize: 30,
+                                                                  fontWeight: FontWeight.bold)
+                                                          ),
+                                                        ),
+
+                                                      ),
+
+
+
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }
+                                        );
+
+                                        //settingModalBottomSheet();
+
+                                        //deleted(documentSnapshot.id);
+                                      },
+                                    //onTap(){},
+                                      cells: [
                                     DataCell(
                                       ConstrainedBox(
                                           constraints: BoxConstraints(
@@ -204,6 +293,13 @@ class _employeedataState extends State<employeedata> {
       ),
     );
   }
+  Future<void>deleted(String Productid)async {
+    await abc.doc(Productid).delete();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content:Text("You Have Been Successfully Delete")));
+
+  }
 
 
-}
+  }
+
