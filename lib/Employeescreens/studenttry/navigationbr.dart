@@ -34,7 +34,7 @@ class _navigationbarState extends State<navigationbar> {
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  title: Text("home"),
+                  title: Text("home hhh"),
                   //label:"Home",
                   //  label:"Home",
                   backgroundColor: Colors.blue
